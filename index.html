@@ -12,6 +12,30 @@
         width: 100%;
         height: 100%;
       }
+      .button-container {
+        position: absolute;
+        top: 160px;
+        left: 10px;
+        z-index: 999;
+        display: none; /* Hide the button container by default */
+      }
+      .button {
+        background-color: rgba(255, 255, 255, 0.5);
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+      /* Set the stacking order for button containers */
+      #button-container-1 {
+        z-index: 1;
+      }
+      #button-container-2 {
+        z-index: 2;
+      }
+      #button-container-3 {
+        z-index: 3;
+      }
     </style>
   </head>
   <body>
@@ -29,6 +53,12 @@
           rotation="-90 0 0"
           material="src: #video1"
         ></a-plane>
+        <div class="button-container" id="button-container-1">
+          <div class="button" onclick="playVideo(0)">Play</div>
+          <div class="button" onclick="pauseVideo(0)">Pause</div>
+          <div class="button" onclick="seekVideo(0, -5)">Rewind 5s</div>
+          <div class="button" onclick="seekVideo(0, 5)">Fast Forward 5s</div>
+        </div>
       </a-marker>
 
       <a-marker type="pattern" url="pattern-2_naim.patt">
@@ -40,6 +70,12 @@
           rotation="-90 0 0"
           material="src: #video2"
         ></a-plane>
+        <div class="button-container" id="button-container-2">
+          <div class="button" onclick="playVideo(1)">Play</div>
+          <div class="button" onclick="pauseVideo(1)">Pause</div>
+          <div class="button" onclick="seekVideo(1, -5)">Rewind 5s</div>
+          <div class="button" onclick="seekVideo(1, 5)">Fast Forward 5s</div>
+        </div>
       </a-marker>
 
       <a-marker type="pattern" url="pattern-3_juliette.patt">
@@ -51,9 +87,15 @@
           rotation="-90 0 0"
           material="src: #video3"
         ></a-plane>
+        <div class="button-container" id="button-container-3">
+          <div class="button" onclick="playVideo(2)">Play</div>
+          <div class="button" onclick="pauseVideo(2)">Pause</div>
+          <div class="button" onclick="seekVideo(2, -5)">Rewind 5s</div>
+          <div class="button" onclick="seekVideo(2, 5)">Fast Forward 5s</div>
+        </div>
       </a-marker>
 
-      <!-- Define your video element -->
+      <!-- Define your video elements -->
       <video id="video1" src="1_sekou.mp4"></video>
       <video id="video2" src="2_naim.mp4"></video>
       <video id="video3" src="3_juliette.mp4"></video>
@@ -65,35 +107,40 @@
     <script>
       // Wait for the DOM to load
       document.addEventListener("DOMContentLoaded", function () {
-        // Set the video element as the source for the video texture
-        const videos = document.querySelectorAll("video");
-
-        const planes = document.querySelectorAll("a-plane");
-
-        planes.forEach((plane, index) => {
-          const videoId = `video${index + 1}`;
-          const video = videos[index];
-
-          plane.setAttribute("material", "src", `#${videoId}`);
-        });
-
-        //
         const markers = document.querySelectorAll("a-marker");
 
         markers.forEach((marker, index) => {
-          const videoId = `video${index + 1}`;
-          const video = videos[index];
+          const buttonContainer = document.getElementById(`button-container-${index + 1}`);
+          const video = document.getElementById(`video${index + 1}`);
 
           marker.addEventListener("markerFound", function () {
+            buttonContainer.style.display = "block"; // Show the button container
             video.play();
           });
 
           marker.addEventListener("markerLost", function () {
+            buttonContainer.style.display = "none"; // Hide the button container
             video.pause();
             video.currentTime = 0;
           });
         });
       });
+
+      // Functions to control the videos
+      function playVideo(index) {
+        const video = document.getElementById(`video${index + 1}`);
+        video.play();
+      }
+
+      function pauseVideo(index) {
+        const video = document.getElementById(`video${index + 1}`);
+        video.pause();
+      }
+
+      function seekVideo(index, time) {
+        const video = document.getElementById(`video${index + 1}`);
+        video.currentTime += time;
+      }
     </script>
   </body>
 </html>
