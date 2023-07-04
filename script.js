@@ -33,34 +33,14 @@ var ArMarkerControls = new THREEx.ArMarkerControls(ArToolkitContext,camera,{
 });
 scene.visible = false;
 
-//
+const geometry = new THREE.CubeGeometry( 1, 1, 1 );
+const material = new THREE.MeshNormalMaterial( { transparent : true,
+opacity : 0.5,
+side : THREE.DoubleSide} );
+const cube = new THREE.Mesh( geometry, material );
 
-//// Create a video element
-const video = document.createElement('video');
-video.src = '1_sekou.mp4';
-video.autoplay = true;
-video.loop = true;
-
-// Create a texture from the video element
-const videoTexture = new THREE.VideoTexture(video);
-videoTexture.minFilter = THREE.LinearFilter;
-videoTexture.magFilter = THREE.LinearFilter;
-videoTexture.format = THREE.RGBFormat;
-
-// Create a plane geometry
-const geometry = new THREE.PlaneGeometry(1, 1);
-
-// Create a material with the video texture
-const material = new THREE.MeshBasicMaterial({ map: videoTexture });
-
-// Create a mesh using the geometry and material
-const plane = new THREE.Mesh(geometry, material);
-
-// Set the position of the plane
-plane.position.y = 0; // Adjust the position as needed
-
-// Add the plane to the scene
-scene.add(plane);
+cube.position.y = geometry.parameters.height / 2;
+scene.add( cube );
 
 camera.position.z = 5;
 
