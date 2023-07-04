@@ -37,8 +37,8 @@
         z-index: 3;
       }
 
-       
-       @media (max-width: 600px) {
+      
+      @media (max-width: 600px) {
         .button-container {
           top: 5px;
           left: 5px;
@@ -118,7 +118,9 @@
         const markers = document.querySelectorAll("a-marker");
 
         markers.forEach((marker, index) => {
-          const buttonContainer = document.getElementById(`button-container-${index + 1}`);
+          const buttonContainer = document.getElementById(
+            `button-container-${index + 1}`
+          );
           const video = document.getElementById(`video${index + 1}`);
 
           marker.addEventListener("markerFound", function () {
