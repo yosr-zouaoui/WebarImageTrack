@@ -22,11 +22,23 @@
     <!-- Define the image target using the image file -->
     <a-marker type="pattern" url="pattern-1_sekou.patt">
       <!-- Create a plane with the video texture -->
-      <a-plane width="1" height="1" position="0 0 0" rotation="-90 0 0" material="src: #video"></a-plane>
+      <a-plane width="1" height="1" position="0 0 0" rotation="-90 0 0" material="src: #video1"></a-plane>
     </a-marker>
 
+    <a-marker type="pattern" url="pattern-2_naim.patt">
+        <!-- Create a plane with the video texture -->
+        <a-plane width="1" height="1" position="0 0 0" rotation="-90 0 0" material="src: #video2"></a-plane>
+      </a-marker>
+
+      <a-marker type="pattern" url="pattern-3_juliette.patt">
+        <!-- Create a plane with the video texture -->
+        <a-plane width="1" height="1" position="0 0 0" rotation="-90 0 0" material="src: #video3"></a-plane>
+      </a-marker>
+
     <!-- Define your video element -->
-    <video id="video" src="1_sekou.mp4" ></video>
+    <video id="video1" src="1_sekou.mp4" ></video>
+    <video id="video2" src="2_naim.mp4" ></video>
+    <video id="video3" src="3_juliette.mp4" ></video>
 
     <!-- Set up the camera and renderer -->
     <a-entity camera></a-entity>
@@ -36,13 +48,25 @@
     // Wait for the DOM to load
     document.addEventListener('DOMContentLoaded', function () {
       // Set the video element as the source for the video texture
-      const video = document.getElementById('video');
-      const plane = document.querySelector('a-plane');
-      plane.setAttribute('material', 'src', `#${video.id}`);
+      const videos = document.querySelectorAll('video');
+      
+      const planes = document.querySelectorAll('a-plane');
+
+      planes.forEach((plane, index) => {
+        const videoId = `video${index + 1}`;
+        const video = videos[index];
+
+        plane.setAttribute('material', 'src', `#${videoId}`);
+      });
 
       //
-      const marker = document.querySelector('a-marker');
-      marker.addEventListener(
+      const markers = document.querySelectorAll('a-marker');
+
+      markers.forEach((marker,index)=>{
+        const videoId = `video${index + 1}`;
+        const video = videos[index]
+
+        marker.addEventListener(
         "markerFound",
         function () {
           video.play();
@@ -56,6 +80,11 @@
           video.currentTime = 0;
         }
       );
+
+      });
+
+     
+     
     });
   </script>
 </body>
