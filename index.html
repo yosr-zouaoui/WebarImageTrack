@@ -13,11 +13,9 @@
         height: 100%;
       }
       .button-container {
-        margin-left: 50%;
-        margin-top: 50%;
-       
-    transform: translate(-50%, -50%);
-   width: 100px;
+        position: absolute;
+        top: 150px;
+        left: 10px;
         z-index: 999;
         display: none; /* Hide the button container by default */
       }
@@ -29,8 +27,14 @@
         margin-bottom: 10px;
       }
 
-
-
+      @media only screen and (max-width: 600px) {
+  .button-container {
+    margin-top: -30px;
+    margin: 50%;
+    
+    
+  }
+}
 
 
 
