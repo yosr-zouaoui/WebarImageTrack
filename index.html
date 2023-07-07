@@ -14,6 +14,7 @@
       }
       .button-container {
         position: absolute;
+
         top: 40%;
         left: 10px;
         z-index: 999;
@@ -48,10 +49,12 @@
     content: "\2192";
   }
 
+
       @media only screen and (max-width: 600px) {
   .button-container {
     top: 10%;
     left:35%
+
   }
  
 }
@@ -78,18 +81,21 @@
         ></a-plane>
         <div class="button-container" id="button-container-1">
           <div class="button-group">
+
           <div class="button" onclick="playVideo(0)">Play</div>
           <div class="button" onclick="pauseVideo(0)">Pause</div>
           <div class="button" onclick="seekVideo(0, -5)">Rewind</div>
           <div class="button" onclick="seekVideo(0, 5)">Forward</div>
           <div class="button" onclick="mutevideo(0)">Mute/unmute</div>
-        </div>
+          </div>
           <div class="button-group">
+
           <div class="button" onclick="translatex(0, -0.3,'x')"><span class="arrow-left"></span></div>
           <div class="button" onclick="translatex(0, 0.3,'x')"><span class="arrow-right"></span></div>
           <div class="button" onclick="translatex(0, -0.3,'y')"><span class="arrow-down"></span></div>
           <div class="button" onclick="translatex(0, 0.3,'y')"><span class="arrow-up"></span></div>
           </div>
+
         </div>
       </a-marker>
 
@@ -103,23 +109,28 @@
           material="src: #video2"
         ></a-plane>
         <div class="button-container" id="button-container-2">
+
           <div class="button-group">
           <div class="button" onclick="playVideo(1)">Play</div>
           <div class="button" onclick="pauseVideo(1)">Pause</div>
           <div class="button" onclick="seekVideo(1, -5)">Backward</div>
           <div class="button" onclick="seekVideo(1, 5)">Forward</div>
           <div class="button" onclick="mutevideo(1)">Mute/unmute</div>
+
           </div>
           <div class="button-group"></div>
           <div class="button" onclick="translatex(1, -0.3,'x')"><span class="arrow-left"></span></div>
           <div class="button" onclick="translatex(1, 0.3,'x')"><span class="arrow-right"></span></div>
           <div class="button" onclick="translatex(1, -0.3,'y')"><span class="arrow-down"></span></div>
           <div class="button" onclick="translatex(1, 0.3,'y')"><span class="arrow-up"></span></div>
+
           </div>
+
         </div>
       </a-marker>
 
       <a-marker type="pattern" url="pattern-3_juliette.patt">
+
 
         <a-plane id="plane3"
           width="1"
@@ -188,6 +199,7 @@
         const video = document.getElementById(`video${index + 1}`);
         video.pause();
       }
+
 
       function seekVideo(index, time) {
         const video = document.getElementById(`video${index + 1}`);
