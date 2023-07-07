@@ -1,91 +1,213 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>AR Video Example</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-    }
-    #canvas {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-</head>
-<body>
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/ar.js/aframe/build/aframe-ar.js"></script>
+  <head>
+    <meta charset="utf-8" />
+    <title>AR Video Example</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      #canvas {
+        width: 100%;
+        height: 100%;
+      }
+      .button-container {
+        position: absolute;
+        top: 40%;
+        left: 10px;
+        z-index: 999;
+        display: none; /* Hide the button container by default */
+      }
+      .button {
+        background-color: rgba(255, 255, 255, 0.5);
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        font-weight: bold;
+    text-align: center;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+      }
+      .button:hover {
+    background-color: #eeeeee;
+  }
+  .arrow-up::before {
+    content: "\2191";
+  }
 
-  <a-scene embedded arjs="sourceType: webcam;">
-    <!-- Define the image target using the image file -->
-    <a-marker type="pattern" url="pattern-1_sekou.patt">
-      <!-- Create a plane with the video texture -->
-      <a-plane width="1" height="1" position="0 0 0" rotation="-90 0 0" material="src: #video1"></a-plane>
-    </a-marker>
+  .arrow-down::before {
+    content: "\2193";
+  }
 
-    <a-marker type="pattern" url="pattern-2_naim.patt">
+  .arrow-left::before {
+    content: "\2190";
+  }
+
+  .arrow-right::before {
+    content: "\2192";
+  }
+
+      @media only screen and (max-width: 600px) {
+  .button-container {
+    top: 10%;
+    left:35%
+  }
+ 
+}
+
+
+
+    
+    </style>
+  </head>
+  <body>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ar.js/aframe/build/aframe-ar.js"></script>
+
+    <a-scene embedded arjs="sourceType: webcam;">
+      <!-- Define the image target using the image file -->
+      <a-marker type="pattern" url="pattern-1_sekou.patt">
         <!-- Create a plane with the video texture -->
-        <a-plane width="1" height="1" position="0 0 0" rotation="-90 0 0" material="src: #video2"></a-plane>
+        <a-plane id="plane1"
+          width="1"
+          height="1"
+          position="0 0 0"
+          rotation="-90 0 0"
+          material="src: #video1"
+        ></a-plane>
+        <div class="button-container" id="button-container-1">
+          <div class="button-group">
+          <div class="button" onclick="playVideo(0)">Play</div>
+          <div class="button" onclick="pauseVideo(0)">Pause</div>
+          <div class="button" onclick="seekVideo(0, -5)">Rewind</div>
+          <div class="button" onclick="seekVideo(0, 5)">Forward</div>
+          <div class="button" onclick="mutevideo(0)">Mute/unmute</div>
+        </div>
+          <div class="button-group">
+          <div class="button" onclick="translatex(0, -0.3,'x')"><span class="arrow-left"></span></div>
+          <div class="button" onclick="translatex(0, 0.3,'x')"><span class="arrow-right"></span></div>
+          <div class="button" onclick="translatex(0, -0.3,'y')"><span class="arrow-down"></span></div>
+          <div class="button" onclick="translatex(0, 0.3,'y')"><span class="arrow-up"></span></div>
+          </div>
+        </div>
+      </a-marker>
+
+      <a-marker type="pattern" url="pattern-2_naim.patt">
+        <!-- Create a plane with the video texture -->
+        <a-plane id="plane2"
+          width="1"
+          height="1"
+          position="0 0 0"
+          rotation="-90 0 0"
+          material="src: #video2"
+        ></a-plane>
+        <div class="button-container" id="button-container-2">
+          <div class="button-group">
+          <div class="button" onclick="playVideo(1)">Play</div>
+          <div class="button" onclick="pauseVideo(1)">Pause</div>
+          <div class="button" onclick="seekVideo(1, -5)">Backward</div>
+          <div class="button" onclick="seekVideo(1, 5)">Forward</div>
+          <div class="button" onclick="mutevideo(1)">Mute/unmute</div>
+          </div>
+          <div class="button-group"></div>
+          <div class="button" onclick="translatex(1, -0.3,'x')"><span class="arrow-left"></span></div>
+          <div class="button" onclick="translatex(1, 0.3,'x')"><span class="arrow-right"></span></div>
+          <div class="button" onclick="translatex(1, -0.3,'y')"><span class="arrow-down"></span></div>
+          <div class="button" onclick="translatex(1, 0.3,'y')"><span class="arrow-up"></span></div>
+          </div>
+        </div>
       </a-marker>
 
       <a-marker type="pattern" url="pattern-3_juliette.patt">
-        <!-- Create a plane with the video texture -->
-        <a-plane width="1" height="1" position="0 0 0" rotation="-90 0 0" material="src: #video3"></a-plane>
+
+        <a-plane id="plane3"
+          width="1"
+          height="1"
+          position="0 0 0"
+          rotation="-90 0 0"
+          material="src: #video3"
+        ></a-plane>
+        <div class="button-container" id="button-container-3">
+          <div class="button-group">
+          <div class="button" onclick="playVideo(2)">Play</div>
+          <div class="button" onclick="pauseVideo(2)">Pause</div>
+          <div class="button" onclick="seekVideo(2, -5)">Backward</div>
+          <div class="button" onclick="seekVideo(2, 5)">Forward</div>
+          <div class="button" onclick="mutevideo(2)">Mute/unmute</div>
+          </div>
+          <div class="button-group">
+          <div class="button" onclick="translatex(2, -0.3,'x')"><span class="arrow-left"></span></div>
+          <div class="button" onclick="translatex(2, 0.3,'x')"><span class="arrow-right"></span></div>
+          <div class="button" onclick="translatex(2, -0.3,'y')"><span class="arrow-down"></span></div>
+          <div class="button" onclick="translatex(2, 0.3,'y')"><span class="arrow-up"></span></div>
+          </div>
+        </div>
       </a-marker>
 
-    <!-- Define your video element -->
-    <video id="video1" src="1_sekou.mp4" ></video>
-    <video id="video2" src="2_naim.mp4" ></video>
-    <video id="video3" src="3_juliette.mp4" ></video>
+      <!--  video elements -->
+      <video id="video1" src="1_sekou.mp4"></video>
+      <video id="video2" src="2_naim.mp4"></video>
+      <video id="video3" src="3_juliette.mp4"></video>
 
-    <!-- Set up the camera and renderer -->
-    <a-entity camera></a-entity>
-  </a-scene>
+      <!-- Set up the camera and renderer -->
+      <a-entity camera></a-entity>
+    </a-scene>
 
-  <script>
-    // Wait for the DOM to load
-    document.addEventListener('DOMContentLoaded', function () {
-      // Set the video element as the source for the video texture
-      const videos = document.querySelectorAll('video');
-      
-      const planes = document.querySelectorAll('a-plane');
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const markers = document.querySelectorAll("a-marker");
 
-      planes.forEach((plane, index) => {
-        const videoId = `video${index + 1}`;
-        const video = videos[index];
+        markers.forEach((marker, index) => {
+          const buttonContainer = document.getElementById(
+            `button-container-${index + 1}`
+          );
+          const video = document.getElementById(`video${index + 1}`);
 
-        plane.setAttribute('material', 'src', `#${videoId}`);
+          marker.addEventListener("markerFound", function () {
+            buttonContainer.style.display = "block"; // Show the button container
+            console.log("marker found");
+            video.play();
+          });
+
+          marker.addEventListener("markerLost", function () {
+            buttonContainer.style.display = "none"; // Hide the button container
+            video.pause();
+            video.currentTime = 0;
+          });
+        });
       });
 
-      //
-      const markers = document.querySelectorAll('a-marker');
+      // Functions to control the videos
+      function playVideo(index) {
+        const video = document.getElementById(`video${index + 1}`);
+        video.play();
+      }
 
-      markers.forEach((marker,index)=>{
-        const videoId = `video${index + 1}`;
-        const video = videos[index]
+      function pauseVideo(index) {
+        const video = document.getElementById(`video${index + 1}`);
+        video.pause();
+      }
 
-        marker.addEventListener(
-        "markerFound",
-        function () {
-          video.play();
-        }
-      );
+      function seekVideo(index, time) {
+        const video = document.getElementById(`video${index + 1}`);
+        video.currentTime += time;
+      }
+      function mutevideo(index) {
+        const video = document.getElementById(`video${index + 1}`);
+        if (video.muted == true) video.muted = false
+        else
+        video.muted = true;
+      }
+      function translatex(index,i,axe){
+        const video = document.getElementById(`plane${index + 1}`);
+       if(axe == 'x') video.object3D.translateX(i)
+       else video.object3D.translateY(i);
 
-      marker.addEventListener(
-        "markerLost",
-        function () {
-          video.pause();
-          video.currentTime = 0;
-        }
-      );
-
-      });
-
-     
-     
-    });
-  </script>
-</body>
+        console.log("position:", video.object3D.position);
+       
+       
+      }
+    </script>
+  </body>
 </html>
