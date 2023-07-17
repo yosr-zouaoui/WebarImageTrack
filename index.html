@@ -67,6 +67,8 @@
   <body>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ar.js/aframe/build/aframe-ar.js"></script>
+<script src="gesture-detector.js"></script>
+<script src="gesture-handler.js"></script>
 
     <a-scene embedded arjs="sourceType: webcam;">
       <!-- Define the image target using the image file -->
@@ -199,7 +201,7 @@
         video.pause();
       }
 
-
+ 
       function seekVideo(index, time) {
         const video = document.getElementById(`video${index + 1}`);
         video.currentTime += time;
