@@ -47,7 +47,7 @@ AFRAME.registerComponent("gesture-handler", {
 
   
         const positionChange = event.detail.positionChange;
-      this.el.object3D.position.x += positionChange.x * translationFactor;
+      this.el.object3D.rotation.x += positionChange.x * translationFactor;
       this.el.object3D.position.y += positionChange.y * translationFactor;
         
       
