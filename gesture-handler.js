@@ -45,10 +45,13 @@ AFRAME.registerComponent("gesture-handler", {
     
 
       if (this.isVisible) {
-        this.el.object3D.position.x +=
-          event.detail.positionChange.x * this.data.positionFactor;
-        this.el.object3D.position.y +=
-          event.detail.positionChange.y * this.data.positionFactor;
+        const positionChange = event.detail.positionChange;
+      const translationVector = new THREE.Vector3(
+        -positionChange.x * this.translationFactor,
+        positionChange.y * this.translationFactor,
+        0
+      );
+      this.el.object3D.position.add(translationVector);
       }
         
       
