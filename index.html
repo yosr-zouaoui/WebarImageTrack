@@ -70,7 +70,9 @@
     <script src="gesture-detector.js"></script>
     <script src="gesture-handler.js"></script>
 
-    <a-scene embedded arjs="sourceType: webcam;">
+    <a-scene 
+     embedded arjs="sourceType: webcam;"
+     gesture-detector>
       <!-- Define the image target using the image file -->
       <a-marker type="pattern" url="pattern-1_sekou.patt">
         <!-- Create a plane with the video texture -->
