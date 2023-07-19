@@ -15,15 +15,15 @@ AFRAME.registerComponent("gesture-handler", {
     this.isVisible = false;
     this.initialScale = this.el.object3D.scale.clone();
     this.scaleFactor = 1;
-   // this.video = document.querySelector("video");
+
 
     this.el.sceneEl.addEventListener("markerFound", (e) => {
-   //   this.video.play();
+
       this.isVisible = true;
     });
 
     this.el.sceneEl.addEventListener("markerLost", (e) => {
-  //    this.video.pause();
+
       this.isVisible = false;
     });
   },
@@ -64,7 +64,7 @@ AFRAME.registerComponent("gesture-handler", {
 
       this.el.object3D.scale.x = this.scaleFactor * this.initialScale.x;
       this.el.object3D.scale.y = this.scaleFactor * this.initialScale.y;
-      this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
+      
     }
   },
 });
