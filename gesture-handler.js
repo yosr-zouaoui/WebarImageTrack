@@ -51,7 +51,7 @@ AFRAME.registerComponent("gesture-handler", {
       this.el.object3D.position.y += positionChange.y * translationFactor;
         
       
-      
+      }
     }
 
   },
