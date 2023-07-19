@@ -15,15 +15,15 @@ AFRAME.registerComponent("gesture-handler", {
     this.isVisible = false;
     this.initialScale = this.el.object3D.scale.clone();
     this.scaleFactor = 1;
-    this.video = document.querySelector("video");
+   // this.video = document.querySelector("video");
 
     this.el.sceneEl.addEventListener("markerFound", (e) => {
-      this.video.play();
+   //   this.video.play();
       this.isVisible = true;
     });
 
     this.el.sceneEl.addEventListener("markerLost", (e) => {
-      this.video.pause();
+  //    this.video.pause();
       this.isVisible = false;
     });
   },
