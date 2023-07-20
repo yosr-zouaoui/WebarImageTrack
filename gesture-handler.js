@@ -60,6 +60,10 @@ this.removeinstruction();
 
   },
 
+  removeinstruction:function () {
+    const instructionElement = document.getElementById("instruction");
+    instructionElement.style.display = "none";
+  },
   handleScale: function (event) {
     if (this.isVisible) {
       this.scaleFactor *=
