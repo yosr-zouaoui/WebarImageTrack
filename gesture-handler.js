@@ -78,5 +78,7 @@ this.removeinstruction();
       this.el.object3D.scale.y = this.scaleFactor * this.initialScale.y;
       this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
     }
+        
+this.removeinstruction();
   },
 });
