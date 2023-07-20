@@ -7,17 +7,7 @@ AFRAME.registerComponent("gesture-handler", {
     minScale: { default: 0.3 },
     maxScale: { default: 8 },
   },
-// this lines of code for removing image instruction once you touch screen
-init: function () {
- 
-  this.el.sceneEl.addEventListener("onefingermove", this.removeinstruction);
-},
 
-removeinstruction: function () {
-  const instructionElement = document.getElementById("instruction");
-  instructionElement.style.display = "none";
-},
-// ************
   init: function () {
     this.handleScale = this.handleScale.bind(this);
     this.handleRotation = this.handleRotation.bind(this);
@@ -53,7 +43,7 @@ removeinstruction: function () {
   handleRotation: function (event) {
    
     
-
+this.removeinstruction();
 /*
       if (this.isVisible) {
         this.el.object3D.position.x +=
