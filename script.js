@@ -30,11 +30,14 @@ document.addEventListener("DOMContentLoaded", function () {
 function playVideo(index) {
   const video = document.getElementById(`video${index + 1}`);
   video.play();
+  document.getElementById("playIcon").style.color = "blue";
 }
 
 function pauseVideo(index) {
   const video = document.getElementById(`video${index + 1}`);
   video.pause();
+  document.getElementById("pauseIcon").style.color = "blue";
+  
 }
 
 function seekVideo(index, time) {
