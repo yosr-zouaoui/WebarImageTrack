@@ -86,8 +86,5 @@ function translatex(index, i, axe) {
 
   this.el.sceneEl.addEventListener("onefingermove", this.removeinstruction);
 
-  function removeinstruction() {
-    const instructionElement = document.getElementById("instruction");
-    instructionElement.style.display = "none";
-  }
+
 }
