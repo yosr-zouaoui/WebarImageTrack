@@ -8,15 +8,15 @@ AFRAME.registerComponent("gesture-handler", {
     maxScale: { default: 8 },
   },
 // this lines of code for removing image instruction once you touch screen
-  init: function () {
+init: function () {
  
-    this.el.sceneEl.addEventListener("onefingermove", this.removeinstruction);
-  },
+  this.el.sceneEl.addEventListener("onefingermove", this.removeinstruction);
+},
 
-  removeinstruction: function () {
-    const instructionElement = document.getElementById("instruction");
-    instructionElement.style.display = "none";
-  },
+removeinstruction: function () {
+  const instructionElement = document.getElementById("instruction");
+  instructionElement.style.display = "none";
+},
 // ************
   init: function () {
     this.handleScale = this.handleScale.bind(this);
@@ -49,12 +49,12 @@ AFRAME.registerComponent("gesture-handler", {
     this.el.sceneEl.removeEventListener("onefingermove", this.handleRotation);
     this.el.sceneEl.removeEventListener("twofingermove", this.handleScale);
   },
-/*
+
   handleRotation: function (event) {
    
     
 
-
+/*
       if (this.isVisible) {
         this.el.object3D.position.x +=
           event.detail.positionChange.x * this.data.positionFactor;
@@ -62,14 +62,13 @@ AFRAME.registerComponent("gesture-handler", {
           event.detail.positionChange.y * this.data.positionFactor;
        }
     
-        
+ */       
       
       
     
 
 
   },
-  */
 
   handleScale: function (event) {
     if (this.isVisible) {
