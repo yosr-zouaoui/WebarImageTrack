@@ -58,8 +58,10 @@ function pauseVideo(index) {
 function seekVideo(index, time) {
   const video = document.getElementById(`video${index + 1}`);
   video.currentTime += time;
+  resetPreviousButtonColor();
 }
 function mutevideo(index) {
+    resetPreviousButtonColor();
   const video = document.getElementById(`video${index + 1}`);
   const volumeUpIcon = document.getElementById("volumeUpIcon");
   const volumeOffIcon = document.getElementById("volumeOffIcon");
@@ -75,6 +77,7 @@ function mutevideo(index) {
   }
 }
 function translatex(index, i, axe) {
+    resetPreviousButtonColor();
   const video = document.getElementById(`plane${index + 1}`);
   if (axe == "x") video.object3D.translateX(i);
   else video.object3D.translateY(i);
