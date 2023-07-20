@@ -65,6 +65,7 @@ this.removeinstruction();
     instructionElement.style.display = "none";
   },
   handleScale: function (event) {
+    this.removeinstruction();
     if (this.isVisible) {
       this.scaleFactor *=
         1 + event.detail.spreadChange / event.detail.startSpread;
@@ -79,6 +80,6 @@ this.removeinstruction();
       this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
     }
         
-this.removeinstruction();
+
   },
 });
