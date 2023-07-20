@@ -8,8 +8,8 @@ body {
 }
 .button-container {
   position: absolute;
-
-  top: 40%;
+ 
+  top: 22%;
   left: 10px;
   z-index: 999;
   display: none; /* Hide the button container by default */
@@ -23,6 +23,7 @@ body {
   font-weight: bold;
   text-align: center;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  display: inline-block;
 }
 .button:hover {
   background-color: #eeeeee;
@@ -43,7 +44,7 @@ body {
   content: "\2192";
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .button-container {
     top: 3%;
     left: 32%;
