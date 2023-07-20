@@ -33,7 +33,7 @@ let previousButtonId = null;
 function resetPreviousButtonColor() {
   if (previousButtonId) {
     const previousButtonIcon = document.getElementById(previousButtonId);
-    previousButtonIcon.style.color = ""; // Reset to initial color (empty string)
+    previousButtonIcon.style.color = "black"; // Reset to initial color (empty string)
   }
 }
 
