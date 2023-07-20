@@ -3,66 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <title>AR Video Example</title>
-    <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-      }
-      #canvas {
-        width: 100%;
-        height: 100%;
-      }
-      .button-container {
-        position: absolute;
 
-        top: 40%;
-        left: 10px;
-        z-index: 999;
-        display: none; /* Hide the button container by default */
-      } 
-      .button {
-        background-color: rgba(255, 255, 255, 0.5);
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-bottom: 10px;
-        font-weight: bold;
-    text-align: center;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-      }
-      .button:hover {
-    background-color: #eeeeee;
-  }
-  .arrow-up::before {
-    content: "\2191";
-  }
-
-  .arrow-down::before {
-    content: "\2193";
-  }
-
-  .arrow-left::before {
-    content: "\2190";
-  }
-
-  .arrow-right::before {
-    content: "\2192";
-  }
-
-
-      @media only screen and (max-width: 600px) {
-  .button-container {
-    top: 10%;
-    left:35%
-
-  }
- 
-}
-
-
-
-    
-    </style>
+      <link rel="stylesheet" href="styles.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
   </head>
   <body>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
@@ -73,8 +17,11 @@
     <a-scene 
      embedded arjs="sourceType: webcam;"
      gesture-detector>
+
+
+     
       <!-- Define the image target using the image file -->
-      <a-marker type="pattern" url="pattern-1_sekou.patt">
+      <a-marker type="pattern" url="assets/pattern-1_sekou.patt">
         <!-- Create a plane with the video texture -->
         <a-plane id="plane1"
           width="1"
@@ -87,24 +34,25 @@
         <div class="button-container" id="button-container-1">
           <div class="button-group">
 
-          <div class="button" onclick="playVideo(0)">Play</div>
-          <div class="button" onclick="pauseVideo(0)">Pause</div>
-          <div class="button" onclick="seekVideo(0, -5)">Rewind</div>
-          <div class="button" onclick="seekVideo(0, 5)">Forward</div>
-          <div class="button" onclick="mutevideo(0)">Mute/unmute</div>
+          <div class="button" onclick="playVideo(0)"><i class="fa fa-play"></i></div>
+          <div class="button" onclick="pauseVideo(0)"><i class="fa fa-pause"></i></div>
+          <div class="button" onclick="seekVideo(0, -5)"><i class="fa fa-backward"></i></div>
+          <div class="button" onclick="seekVideo(0, 5)"><i class="fa fa-forward"></i></div>
+          <div class="button" onclick="mutevideo(0)"><i id="volumeUpIcon" class="fa fa-volume-up"></i>
+            <i id="volumeOffIcon" class="fa fa-volume-off" style="display: none;"></i></div>
           </div>
           <div class="button-group">
 
-          <div class="button" onclick="translatex(0, -0.3,'x')"><span class="arrow-left"></span></div>
-          <div class="button" onclick="translatex(0, 0.3,'x')"><span class="arrow-right"></span></div>
-          <div class="button" onclick="translatex(0, -0.3,'y')"><span class="arrow-down"></span></div>
-          <div class="button" onclick="translatex(0, 0.3,'y')"><span class="arrow-up"></span></div>
+          <div class="button" onclick="translatex(0, -0.1,'x')"><i class="fa fa-arrow-circle-left"></i></div>
+          <div class="button" onclick="translatex(0, 0.1,'x')"><i class="fa fa-arrow-circle-right"></i></div>
+          <div class="button" onclick="translatex(0, -0.1,'y')"><i class="fa fa-arrow-circle-down"></i></div>
+          <div class="button" onclick="translatex(0, 0.1,'y')"><i class="fa fa-arrow-circle-up"></i></div>
           </div>
 
         </div>
       </a-marker>
 
-      <a-marker type="pattern" url="pattern-2_naim.patt">
+      <a-marker type="pattern" url="assets/pattern-2_naim.patt">
         <!-- Create a plane with the video texture -->
         <a-plane id="plane2"
           width="1"
@@ -117,25 +65,26 @@
         <div class="button-container" id="button-container-2">
 
           <div class="button-group">
-          <div class="button" onclick="playVideo(1)">Play</div>
-          <div class="button" onclick="pauseVideo(1)">Pause</div>
-          <div class="button" onclick="seekVideo(1, -5)">Backward</div>
-          <div class="button" onclick="seekVideo(1, 5)">Forward</div>
-          <div class="button" onclick="mutevideo(1)">Mute/unmute</div>
+          <div class="button" onclick="playVideo(1)"><i class="fa fa-play"></i></div>
+          <div class="button" onclick="pauseVideo(1)"><i class="fa fa-pause"></i></div>
+          <div class="button" onclick="seekVideo(1, -5)"><i class="fa fa-backward"></i></div>
+          <div class="button" onclick="seekVideo(1, 5)"><i class="fa fa-forward"></i></div>
+          <div class="button" onclick="mutevideo(1)"><i id="volumeUpIcon" class="fa fa-volume-up"></i>
+            <i id="volumeOffIcon" class="fa fa-volume-off" style="display: none;"></i></div>
 
           </div>
           <div class="button-group"></div>
-          <div class="button" onclick="translatex(1, -0.3,'x')"><span class="arrow-left"></span></div>
-          <div class="button" onclick="translatex(1, 0.3,'x')"><span class="arrow-right"></span></div>
-          <div class="button" onclick="translatex(1, -0.3,'y')"><span class="arrow-down"></span></div>
-          <div class="button" onclick="translatex(1, 0.3,'y')"><span class="arrow-up"></span></div>
+          <div class="button" onclick="translatex(1, -0.1,'x')"><i class="fa fa-arrow-circle-left"></i></div>
+          <div class="button" onclick="translatex(1, 0.1,'x')"><i class="fa fa-arrow-circle-right"></i></div>
+          <div class="button" onclick="translatex(1, -0.1,'y')"><i class="fa fa-arrow-circle-down"></i></div>
+          <div class="button" onclick="translatex(1, 0.1,'y')"><i class="fa fa-arrow-circle-up"></i></div>
 
           </div>
 
         </div>
       </a-marker>
 
-      <a-marker type="pattern" url="pattern-3_juliette.patt">
+      <a-marker type="pattern" url="assets/pattern-3_juliette.patt">
 
 
         <a-plane id="plane3"
@@ -148,84 +97,35 @@
         ></a-plane>
         <div class="button-container" id="button-container-3">
           <div class="button-group">
-          <div class="button" onclick="playVideo(2)">Play</div>
-          <div class="button" onclick="pauseVideo(2)">Pause</div>
-          <div class="button" onclick="seekVideo(2, -5)">Backward</div>
-          <div class="button" onclick="seekVideo(2, 5)">Forward</div>
-          <div class="button" onclick="mutevideo(2)">Mute/unmute</div>
+          <div class="button" onclick="playVideo(2)"><i class="fa fa-play"></i></div>
+          <div class="button" onclick="pauseVideo(2)"><i class="fa fa-pause"></i></div>
+          <div class="button" onclick="seekVideo(2, -5)"><i class="fa fa-backward"></i></div>
+          <div class="button" onclick="seekVideo(2, 5)"><i class="fa fa-forward"></i></div>
+          <div class="button" onclick="mutevideo(2)"><i id="volumeUpIcon" class="fa fa-volume-up"></i>
+            <i id="volumeOffIcon" class="fa fa-volume-off" style="display: none;"></i></div>
           </div>
           <div class="button-group">
-          <div class="button" onclick="translatex(2, -0.3,'x')"><span class="arrow-left"></span></div>
-          <div class="button" onclick="translatex(2, 0.3,'x')"><span class="arrow-right"></span></div>
-          <div class="button" onclick="translatex(2, -0.3,'y')"><span class="arrow-down"></span></div>
-          <div class="button" onclick="translatex(2, 0.3,'y')"><span class="arrow-up"></span></div>
+          <div class="button" onclick="translatex(2, -0.1,'x')"><i class="fa fa-arrow-circle-left"></i></div>
+          <div class="button" onclick="translatex(2, 0.1,'x')"><i class="fa fa-arrow-circle-right"></i></div>
+          <div class="button" onclick="translatex(2, -0.1,'y')"><i class="fa fa-arrow-circle-down"></i></div>
+          <div class="button" onclick="translatex(2, 0.1,'y')"><i class="fa fa-arrow-circle-up"></i></div>
           </div>
         </div>
       </a-marker>
       <!--  video elements -->
-      <video id="video1" src="1_sekou.mp4"></video>
-      <video id="video2" src="2_naim.mp4"></video>
-      <video id="video3" src="3_juliette.mp4"></video>
+      <video id="video1" src="assets/1_sekou.mp4"></video>
+      <video id="video2" src="assets/2_naim.mp4"></video>
+      <video id="video3" src="assets/3_juliette.mp4"></video>
+
+      <!-- this image is for istruction to scale video -->
+      <img id="instruction" class="instruction" height="30%" width="30%" src="assets/pinch.png" alt="Pinch to scale" />
 
       <!-- Set up the camera and renderer -->
       <a-entity camera></a-entity>
     </a-scene>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const markers = document.querySelectorAll("a-marker");
-
-        markers.forEach((marker, index) => {
-          const buttonContainer = document.getElementById(
-            `button-container-${index + 1}`
-          );
-          const video = document.getElementById(`video${index + 1}`);
-
-          marker.addEventListener("markerFound", function () {
-            buttonContainer.style.display = "block"; // Show the button container
-            console.log("marker found");
-            video.play();
-          });
-
-          marker.addEventListener("markerLost", function () {
-            buttonContainer.style.display = "none"; // Hide the button container
-            video.pause();
-            video.currentTime = 0;
-          });
-        });
-      });
-
-      // Functions to control the videos
-      function playVideo(index) {
-        const video = document.getElementById(`video${index + 1}`);
-        video.play();
-      }
-
-      function pauseVideo(index) {
-        const video = document.getElementById(`video${index + 1}`);
-        video.pause();
-      }
-
- 
-      function seekVideo(index, time) {
-        const video = document.getElementById(`video${index + 1}`);
-        video.currentTime += time;
-      }
-      function mutevideo(index) {
-        const video = document.getElementById(`video${index + 1}`);
-        if (video.muted == true) video.muted = false
-        else
-        video.muted = true;
-      }
-      function translatex(index,i,axe){
-        const video = document.getElementById(`plane${index + 1}`);
-       if(axe == 'x') video.object3D.translateX(i)
-       else video.object3D.translateY(i);
-
-        console.log("position:", video.object3D.position);
-       
-       
-      }
+    <script src="script.js">
+     
     </script>
   </body>
 </html>

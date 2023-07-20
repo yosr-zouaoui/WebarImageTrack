@@ -1,55 +1,76 @@
-const scene = new THREE.Scene();
-const camera = new THREE.Camera();
+document.addEventListener("DOMContentLoaded", function () {
+    const markers = document.querySelectorAll("a-marker");
 
-scene.add(camera);
-const renderer = new THREE.WebGLRenderer({
-    antialias:true,
-    alpha:true,
-});
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+    markers.forEach((marker, index) => {
+      const buttonContainer = document.getElementById(
+        `button-container-${index + 1}`
+      );
+      const video = document.getElementById(`video${index + 1}`);
+      const instructionElement = document.getElementById("instruction");
+      marker.addEventListener("markerFound", function () {
+       
+        instructionElement.style.display = "block";
+        instructionElement.style.animation = "pinchAnimation 2s ease-out infinite";
+        buttonContainer.style.display = "block"; // Show the button container
+        
+        console.log("marker found");
+        video.play();
+      });
 
-var ArToolkitSource = new THREEx.ArToolkitSource({
-    sourceType: "webcam",
-});
-ArToolkitSource.init(function(){
-    setTimeout(function(){
-        ArToolkitSource.onResizeElement();
-        ArToolkitSource.copyElementSizeTo(renderer.domElement)
-    })
-});
-var ArToolkitContext = new THREEx.ArToolkitContext({
-    cameraParametersUrl: 'camera_para.dat',
-    detectionMode: 'color_and_matrix',
-});
-ArToolkitContext.init(function(){
-    camera.projectionMatrix.copy(ArToolkitContext.getProjectionMatrix());
-})
+      marker.addEventListener("markerLost", function () {
+        buttonContainer.style.display = "none"; // Hide the button container
+        instructionElement.style.display = "none";
+        video.pause();
+        video.currentTime = 0;
+      });
+    });
+  });
 
-var ArMarkerControls = new THREEx.ArMarkerControls(ArToolkitContext,camera,{
-   type : 'pattern',
-   patternUrl : 'pattern-1_sekou.patt',
-   changeMatrixMode : 'cameraTransformMatrix'
-});
-scene.visible = false;
+  // Functions to control the videos
+  function playVideo(index) {
+    const video = document.getElementById(`video${index + 1}`);
+    video.play();
+  }
 
-const geometry = new THREE.CubeGeometry( 1, 1, 1 );
-const material = new THREE.MeshNormalMaterial( { transparent : true,
-opacity : 0.5,
-side : THREE.DoubleSide} );
-const cube = new THREE.Mesh( geometry, material );
+  function pauseVideo(index) {
+    const video = document.getElementById(`video${index + 1}`);
+    video.pause();
+  }
 
-cube.position.y = geometry.parameters.height / 2;
-scene.add( cube );
 
-camera.position.z = 5;
+  function seekVideo(index, time) {
+    const video = document.getElementById(`video${index + 1}`);
+    video.currentTime += time;
+  }
+  function mutevideo(index) {
+    const video = document.getElementById(`video${index + 1}`);
+    const volumeUpIcon = document.getElementById("volumeUpIcon");
+  const volumeOffIcon = document.getElementById("volumeOffIcon");
 
-function animate() {
-	requestAnimationFrame( animate );
+    if (video.muted == true) {
+        volumeUpIcon.style.display = "inline";
+        volumeOffIcon.style.display = "none";
+        video.muted = false
 
-    ArToolkitContext.update(ArToolkitSource.domElement);
-    scene.visible = camera.visible;
-	renderer.render( scene, camera );
-}
+    }
+    else {
+        volumeUpIcon.style.display = "none";
+        volumeOffIcon.style.display = "inline";
+        video.muted = true;
+    }
+  }
+  function translatex(index,i,axe){
+    const video = document.getElementById(`plane${index + 1}`);
+   if(axe == 'x') video.object3D.translateX(i)
+   else video.object3D.translateY(i);
 
-animate();
+    console.log("position:", video.object3D.position);
+   
+    this.el.sceneEl.addEventListener("onefingermove", this.removeinstruction);
+
+    function removeinstruction() {
+    const instructionElement = document.getElementById("instruction");
+    instructionElement.style.display = "none";
+};
+   
+  }
