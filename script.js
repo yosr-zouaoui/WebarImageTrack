@@ -27,16 +27,31 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Functions to control the videos
+
+let previousButtonId = null;
+
+function resetPreviousButtonColor() {
+  if (previousButtonId) {
+    const previousButtonIcon = document.getElementById(previousButtonId);
+    previousButtonIcon.style.color = ""; // Reset to initial color (empty string)
+  }
+}
+
+
 function playVideo(index) {
   const video = document.getElementById(`video${index + 1}`);
   video.play();
   document.getElementById("playIcon").style.color = "blue";
+  resetPreviousButtonColor();
+  previousButtonId = "playIcon";
 }
 
 function pauseVideo(index) {
   const video = document.getElementById(`video${index + 1}`);
   video.pause();
   document.getElementById("pauseIcon").style.color = "blue";
+  resetPreviousButtonColor();
+  previousButtonId = "pauseIcon";
   
 }
 
