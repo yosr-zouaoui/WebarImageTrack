@@ -41,17 +41,17 @@ function resetPreviousButtonColor() {
 function playVideo(index) {
   const video = document.getElementById(`video${index + 1}`);
   video.play();
-  document.getElementById("playIcon").style.color = "blue";
+  document.getElementById(`playIcon${index + 1}`).style.color = "blue";
   resetPreviousButtonColor();
-  previousButtonId = "playIcon";
+  previousButtonId = `playIcon${index + 1}`;
 }
 
 function pauseVideo(index) {
   const video = document.getElementById(`video${index + 1}`);
   video.pause();
-  document.getElementById("pauseIcon").style.color = "blue";
+  document.getElementById(`pauseIcon${index + 1}`).style.color = "blue";
   resetPreviousButtonColor();
-  previousButtonId = "pauseIcon";
+  previousButtonId = `pauseIcon${index + 1}`;
   
 }
 
@@ -61,10 +61,10 @@ function seekVideo(index, time) {
   resetPreviousButtonColor();
 }
 function mutevideo(index) {
-    resetPreviousButtonColor();
+    
   const video = document.getElementById(`video${index + 1}`);
-  const volumeUpIcon = document.getElementById("volumeUpIcon");
-  const volumeOffIcon = document.getElementById("volumeOffIcon");
+  const volumeUpIcon = document.getElementById(`volumeUpIcon${index + 1}`);
+  const volumeOffIcon = document.getElementById(`volumeOffIcon${index + 1}`);
 
   if (video.muted == true) {
     volumeUpIcon.style.display = "inline";
@@ -75,6 +75,7 @@ function mutevideo(index) {
     volumeOffIcon.style.display = "inline";
     video.muted = true;
   }
+  resetPreviousButtonColor();
 }
 function translatex(index, i, axe) {
     resetPreviousButtonColor();
